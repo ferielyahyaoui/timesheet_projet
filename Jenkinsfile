@@ -2,7 +2,12 @@ pipeline {
 
  agent any
 
- tools {jdk 'JAVA_HOME’, maven 'M2_HOME'}
+ environment {
+         JAVA_HOME = "/usr/lib/jvm/java-17-openjdk-amd64/"
+         M2_HOME = "/opt/apache-maven-3.6.3"
+         PATH = "$M2_HOME/bin:$PATH"
+
+     }
 
  stages {
 
@@ -10,9 +15,9 @@ pipeline {
 
            steps {
 
-               git branch: 'master',
+               git branch: 'main',
 
-               url: 'git@github.com:ferielyahyaoui/timesheet_projet.git'
+               url: 'https://github.com/ferielyahyaoui/timesheet_projet.git'
 
           }
 
@@ -20,14 +25,14 @@ pipeline {
 
  stage ('Compile Stage') {
 
- steps {
+    steps {
 
- sh 'mvn clean compile'
+    sh 'mvn clean compile'
 
- }
-
- }
+    }
 
  }
+
+}
 
 }
