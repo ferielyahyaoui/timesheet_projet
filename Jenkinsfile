@@ -8,12 +8,10 @@ pipeline {
 
  stage('GIT') {
 
-           steps {
-                   sshagent(credentials: ['jenkins-key']) {
+            steps {
+                sshagent(credentials: ['jenkins-key']) {
                     git url: 'git@github.com:ferielyahyaoui/timesheet_projet.git', branch: 'main'
-
-          }
-
+                }
      }
 
  stage ('Compile Stage') {
