@@ -2,22 +2,15 @@ pipeline {
 
  agent any
 
- environment {
-         JAVA_HOME = "/usr/lib/jvm/java-17-openjdk-amd64/"
-         M2_HOME = "/opt/apache-maven-3.6.3"
-         PATH = "$M2_HOME/bin:$PATH"
-
-     }
+ tools {jdk 'JAVA_HOME’, maven 'M2_HOME'}
 
  stages {
 
  stage('GIT') {
 
            steps {
-
-               git branch: 'main',
-
-               url: 'https://github.com/ferielyahyaoui/timesheet_projet.git'
+                   sshagent(credentials: ['jenkins-key']) {
+                    git url: 'git@github.com:ferielyahyaoui/timesheet_projet.git', branch: 'main'
 
           }
 
@@ -25,14 +18,14 @@ pipeline {
 
  stage ('Compile Stage') {
 
-    steps {
+ steps {
 
-    sh 'mvn clean compile'
-
-    }
+ sh 'mvn clean compile'
 
  }
 
-}
+ }
+
+ }
 
 }
