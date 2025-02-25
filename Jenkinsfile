@@ -1,23 +1,39 @@
 pipeline {
     agent any
-    environment {
+  environment {
         JAVA_HOME = "/usr/lib/jvm/java-17-openjdk-amd64/"
-        M2_HOME = "/opt/apache-maven-3.8.7"
+        M2_HOME = "/usr/share/maven"  // Mise à jour du chemin de Maven
         PATH = "$M2_HOME/bin:$PATH"
     }
+
     stages {
-        stage('Checkout') {
+        stage('Hello Test') {
             steps {
-                sshagent(credentials: ['jenkins-key']) {
-                    git url: 'git@github.com:ferielyahyaoui/gestion_spring.git', branch: 'main'
-                }
+                echo ' hello feryal '
             }
         }
 
-        stage('Compile') {
+        stage('Git Checkout') {
+            steps {
+                git branch: 'FeryalYahyaoui-4TWIN5-G3',
+                    url: 'https://github.com/Saif-Hlaimi/4twin5_G3_GestionStationSki.git',
+                    credentialsId: 'jenkins-key'
+            }
+        }
+
+        stage('Clean compile') {
             steps {
                 sh 'mvn clean compile'
             }
         }
+
+
+        stage(' test Projet') {
+            steps {
+                 sh 'mvn -Dtest=RegistrationServicesImplTest clean test '
+             }
+        }
+
+       
     }
 }
