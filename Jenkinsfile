@@ -15,8 +15,8 @@ pipeline {
 
         stage('Git Checkout') {
             steps {
-                git branch: 'FeryalYahyaoui-4TWIN5-G3',
-                    url: 'https://github.com/Saif-Hlaimi/4twin5_G3_GestionStationSki.git',
+                git branch: 'main',
+                    url: 'https://github.com/ferielyahyaoui/timesheet_projet.git',
                     credentialsId: 'jenkins-key'
             }
         }
