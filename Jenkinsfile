@@ -30,7 +30,7 @@ pipeline {
         stage('SonarQube') {
             steps {
                 withSonarQubeEnv('sq1') {
-                    sh './mvn clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
+                sh '/usr/share/maven/bin/mvn clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
                 }
             }
         }
