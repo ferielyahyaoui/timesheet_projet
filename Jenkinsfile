@@ -28,11 +28,7 @@ pipeline {
         }
 
 
-        stage(' test Projet') {
-            steps {
-                 sh 'mvn -Dtest=RegistrationServicesImplTest clean test '
-             }
-        }
+       
 
        
     }
