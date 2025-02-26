@@ -30,7 +30,7 @@ pipeline {
         stage('SonarQube') {
             steps {
                 withSonarQubeEnv('sq1') {
-                sh '/usr/share/maven/bin/mvn clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
+  sh 'mvn sonar:sonar -Dsonar.projectKey=timesheet-devops -Dsonar.projectName=timesheet_projet -Dsonar.login=squ_945f4ba69c197e59b6fe994ccb448eeb025a5b88'
                 }
             }
         }
