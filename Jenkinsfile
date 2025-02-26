@@ -27,16 +27,13 @@ pipeline {
             }
         }
 
-        stage('SonarQube') {
-            steps {
-                withSonarQubeEnv('sq1') {
-                  sh 'mvn sonar:sonar ' +
-               '-Dsonar.projectKey=timesheet_projet ' +
-               '-Dsonar.projectName=timesheet_projet ' +
-               '-Dsonar.host.url=http://localhost:8181 ' + 
-               '-Dsonar.login=squ_945f4ba69c197e59b6fe994ccb448eeb025a5b88'                }
-            }
-        }
+        stage('Sonar Analysis') {
+			steps {
+				withSonarQubeEnv('sq1') {
+					sh 'mvn sonar:sonar'
+                        }
+                    }
+                }
        
 
        
